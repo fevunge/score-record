@@ -1,6 +1,6 @@
 import { fastify } from "fastify";
 import { fastifyCors } from "@fastify/cors";
-import { validatorCompiler, serializerCompiler, ZodTypeProvider } from "fastify-type-provider-zod";
+import { validatorCompiler, serializerCompiler, ZodTypeProvider, jsonSchemaTransform } from "fastify-type-provider-zod";
 import { recordRoutes } from "./routes/record";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifySwagger from "@fastify/swagger";
@@ -16,7 +16,8 @@ server.register(fastifySwagger, {
             title: "online-record",
             version: "1.0.1",
         }
-    }
+    },
+    transform: jsonSchemaTransform,
 })
 server.register(fastifySwaggerUi, {
     routePrefix: "/doc",
