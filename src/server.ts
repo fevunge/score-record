@@ -13,19 +13,19 @@ server.setSerializerCompiler(serializerCompiler)
 server.register(fastifySwagger, {
     openapi: {
         info: {
-            title: "online-record",
-            version: "1.0.1",
+            title: "Typed api",
+            version: "1.0.0",
         }
     },
     transform: jsonSchemaTransform,
 })
 server.register(fastifySwaggerUi, {
-    routePrefix: "/doc",
+    routePrefix: "/doc"
 })
 server.register(recordRoutes)
 
 server.listen({
     port: 3000
 }).then(() => {
-    console.log("server running!");
+    console.log("server running at http://localhost:3000");
 })
