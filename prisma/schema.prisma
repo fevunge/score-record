@@ -10,8 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Player {
-  id    String @id @default(uuid())
-  name  String
-  score String
+model Record {
+  id      String @id @default(uuid())
+  player  String
+  score   String
 }
