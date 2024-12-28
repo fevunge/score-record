@@ -10,6 +10,7 @@ const server = fastify().withTypeProvider<ZodTypeProvider>()
 server.register(fastifyCors, { origin: "*" })
 server.setValidatorCompiler(validatorCompiler)
 server.setSerializerCompiler(serializerCompiler)
+
 server.register(fastifySwagger, {
     openapi: {
         info: {
@@ -17,8 +18,9 @@ server.register(fastifySwagger, {
             version: "1.0.0",
         }
     },
-    transform: jsonSchemaTransform,
+    transform: jsonSchemaTransform
 })
+
 server.register(fastifySwaggerUi, {
     routePrefix: "/doc"
 })
