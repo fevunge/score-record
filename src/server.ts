@@ -27,7 +27,7 @@ server.register(fastifySwaggerUi, {
 server.register(recordRoutes)
 
 server.listen({
-    port: 3000
+    port: Number(process.env.PORT) || 3333
 }).then(() => {
     console.log("server running at http://localhost:3000");
 })
