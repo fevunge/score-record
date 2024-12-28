@@ -29,5 +29,5 @@ server.register(recordRoutes)
 server.listen({
     port: Number(process.env.PORT) || 3333
 }).then(() => {
-    console.log("server running at http://localhost:3000");
+    // console.log("server running at http://localhost:3000");
 })
