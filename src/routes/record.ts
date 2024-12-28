@@ -8,8 +8,15 @@ export async function recordRoutes(app: FastifyTypedInstance) {
     app.get('/records', {
 		schema : {
 			tags: ['records'],
-			description: 'list all records'
-		}
+			description: 'LIST ALL RECORDS',
+			response: {
+			200: z.array(z.object({
+					id: z.string(),
+					player: z.string(),
+					score: z.string(),
+				})),
+			},
+		},
 	},
 	async () => {	
         const records = await prisma.record.findMany(
@@ -32,14 +39,24 @@ export async function recordRoutes(app: FastifyTypedInstance) {
 	app.post('/records', {
 		schema: {
 			tags: ['records'],
-			description: 'save a new record',
-			body : {
+			description: 'CREATE A NEW RECORD',
+			body : z.object({
 				player: z.string(),
 				score: z.number(),
+			}),
+			response: {
+				201: z.null().describe('Record created'),
 			},
 		},
 	}, 
 	async (request, reply) => {
+		const {player, score} = request.body
+		await prisma.record.create({
+			data: {
+				player,
+				score,
+			}
+		})
 		return reply.status(201).send()
 	})
 }
