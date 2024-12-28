@@ -14,7 +14,7 @@ server.setSerializerCompiler(serializerCompiler)
 server.register(fastifySwagger, {
     openapi: {
         info: {
-            title: "Typed api",
+            title: "score record",
             version: "1.0.0",
         }
     },
